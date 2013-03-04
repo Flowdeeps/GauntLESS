@@ -1,0 +1,37 @@
+/*
+* =================================================
+*
+* Gauntless.css
+*
+* =================================================
+*/
+body {
+  background: #666;
+  }
+h1 {
+  text-align: center;
+  }
+
+/* stage */
+#stage {
+  background: #fff;
+  width: 32px;
+  height: 32px;
+  margin: auto;
+  }
+/* zoom tools */
+#zoom {
+  text-align: center;
+  list-style: none;
+  padding: 0;
+  }
+  #zoom li {
+    display: inline-block;
+    }
+
+/* footer */
+footer {
+  }
+  footer p {
+    text-align: center;
+    }
