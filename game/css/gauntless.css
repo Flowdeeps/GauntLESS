@@ -23,8 +23,8 @@ h1 {
   }
   #stage #map {
     position: absolute;
-    left: -16px;
-    top: -16px;
+    left: 0;
+    top: 0;
     height: 64px;
     width: 64px;
     }
