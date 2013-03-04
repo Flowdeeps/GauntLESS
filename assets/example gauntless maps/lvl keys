@@ -1,0 +1,16 @@
+lvl keys
+
+0 = empty
+1 = wall
+xn = exit - n is target level number
+w = wizard starting location
+v = valkyrie starting location
+b = babrbarian starting location
+e = elf starting location ()
+d = door
+k = key
+pn = potion - n is potion type
+f = food
+g = gold
+m = monster lair
+tn-n = teleport - n is x - y coord of target
