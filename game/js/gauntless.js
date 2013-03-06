@@ -167,21 +167,25 @@ window.onload = function() {
   var moving = false;
 
   function movePlayerUp() {
+    stopMoving();
     moving = setInterval(function()  {
       goUp();
     }, 50);
   }
   function movePlayerDown() {
+    stopMoving();
     moving = setInterval(function()  {
       goDown();
     }, 50);
   }
   function movePlayerLeft() {
+    stopMoving();
     moving = setInterval(function()  {
       goLeft();
     }, 50);
   }
   function movePlayerRight() {
+    stopMoving();
     moving = setInterval(function()  {
       goRight();
     }, 50);
