@@ -16,7 +16,9 @@ body {
 h1 {
   text-align: center;
   }
-
+canvas {
+  box-shadow: 1px 1px 1px #000;
+  }
 /* zoom tools */
 #zoom {
   text-align: center;
