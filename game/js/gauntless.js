@@ -191,14 +191,16 @@ window.onload = function() {
     for(var y = 0; y < $mapArray.length; y++) {
       for(var x = 0; x < $mapArray[y].length; x++) {
         if ($mapArray[y][x] === "F") {
-          nextPos = (y-1);
-          if ($mapArray[nextPos][x] != 1) {
-            $mapArray[nextPos][x] = "F";
-            $mapArray[y][x] = 0;
-          }
+          var playerX = x;
+          var playerY = y;
           break;
         }
       }
+    }
+    nextPos = (playerY-1);
+    if ($mapArray[nextPos][playerX] != 1) {
+      $mapArray[nextPos][playerX] = "F";
+      $mapArray[playerY][playerX] = 0;
     }
   }
 
@@ -206,14 +208,16 @@ window.onload = function() {
     for(var y = 0; y < $mapArray.length; y++) {
       for(var x = 0; x < $mapArray[y].length; x++) {
         if ($mapArray[y][x] === "F") {
-          nextPos = (y+1);
-          if ($mapArray[nextPos][x] != 1) {
-            $mapArray[nextPos][x] = "F";
-            $mapArray[y][x] = 0;
-          }
+          var playerX = x;
+          var playerY = y;
           break;
         }
       }
+    }
+    nextPos = (playerY+1);
+    if ($mapArray[nextPos][playerX] != 1) {
+      $mapArray[nextPos][playerX] = "F";
+      $mapArray[playerY][playerX] = 0;
     }
   }
 
@@ -221,14 +225,16 @@ window.onload = function() {
     for(var y = 0; y < $mapArray.length; y++) {
       for(var x = 0; x < $mapArray[y].length; x++) {
         if ($mapArray[y][x] === "F") {
-          nextPos = (x-1);
-          if ($mapArray[y][nextPos] != 1) {
-            $mapArray[y][nextPos] = "F";
-            $mapArray[y][x] = 0;
-          }
+          var playerX = x;
+          var playerY = y;
           break;
         }
       }
+    }
+    nextPos = (playerX-1);
+    if ($mapArray[playerY][nextPos] != 1) {
+      $mapArray[playerY][nextPos] = "F";
+      $mapArray[playerY][playerX] = 0;
     }
   }
 
@@ -236,14 +242,16 @@ window.onload = function() {
     for(var y = 0; y < $mapArray.length; y++) {
       for(var x = 0; x < $mapArray[y].length; x++) {
         if ($mapArray[y][x] === "F") {
-          nextPos = (x+1);
-          if ($mapArray[y][nextPos] != 1) {
-            $mapArray[y][nextPos] = "F";
-            $mapArray[y][x] = 0;
-          }
+          var playerX = x;
+          var playerY = y;
           break;
         }
       }
+    }
+    nextPos = (playerX+1);
+    if ($mapArray[playerY][nextPos] != 1) {
+      $mapArray[playerY][nextPos] = "F";
+      $mapArray[playerY][playerX] = 0;
     }
   }
 
