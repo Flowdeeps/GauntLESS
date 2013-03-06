@@ -28,7 +28,6 @@ window.onload = function() {
         zoomScale -= 1;
         $stage.style.zoom = zoomScale;
       }
-      console.log(zoomScale);
       return false;
     }
   }
