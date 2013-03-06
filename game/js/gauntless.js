@@ -167,57 +167,95 @@ window.onload = function() {
   var moving = false;
 
   function movePlayerUp() {
-    alert("up");
+    moving = setInterval(function()  {
+      goUp();
+    }, 50);
   }
   function movePlayerDown() {
-    alert("down");
+    moving = setInterval(function()  {
+      goDown();
+    }, 50);
   }
   function movePlayerLeft() {
-    moving = true;
-    for(y = 0; y < mapArray.length; y++) {
-      for(var x = 0; x < mapArray[y].length; x++) {
-        if (mapArray[y][x] === "F") {
-          /*
-          setInterval(function()  {
-            if (moving) {
-              nextPos = (x-1);
-              if (mapArray[y][nextPos] != 1) {
-                mapArray[y][nextPos] = "F";
-                mapArray[y][x] = 0;
-              }
-            } else {
-            }
-          }, 50);
-          break;
-          */
-        }
-      }
-    }
+    moving = setInterval(function()  {
+      goLeft();
+    }, 50);
   }
   function movePlayerRight() {
-    moving = true;
-    for(y = 0; y < mapArray.length; y++) {
-      for(var x = 0; x < mapArray[y].length; x++) {
-        if (mapArray[y][x] === "F") {
-            nextPos = (x+1);
-            if (mapArray[y][nextPos] != 1) {
-                mapArray[y][nextPos] = "F";
-                mapArray[y][x] = 0;
-                break;
-            }
+    moving = setInterval(function()  {
+      goRight();
+    }, 50);
+  }
+
+  function goUp() {
+    for(var y = 0; y < $mapArray.length; y++) {
+      for(var x = 0; x < $mapArray[y].length; x++) {
+        if ($mapArray[y][x] === "F") {
+          nextPos = (y-1);
+          if ($mapArray[nextPos][x] != 1) {
+            $mapArray[nextPos][x] = "F";
+            $mapArray[y][x] = 0;
+          }
+          break;
         }
       }
     }
   }
+
+  function goDown() {
+    for(var y = 0; y < $mapArray.length; y++) {
+      for(var x = 0; x < $mapArray[y].length; x++) {
+        if ($mapArray[y][x] === "F") {
+          nextPos = (y+1);
+          if ($mapArray[nextPos][x] != 1) {
+            $mapArray[nextPos][x] = "F";
+            $mapArray[y][x] = 0;
+          }
+          break;
+        }
+      }
+    }
+  }
+
+  function goLeft() {
+    for(var y = 0; y < $mapArray.length; y++) {
+      for(var x = 0; x < $mapArray[y].length; x++) {
+        if ($mapArray[y][x] === "F") {
+          nextPos = (x-1);
+          if ($mapArray[y][nextPos] != 1) {
+            $mapArray[y][nextPos] = "F";
+            $mapArray[y][x] = 0;
+          }
+          break;
+        }
+      }
+    }
+  }
+
+  function goRight() {
+    for(var y = 0; y < $mapArray.length; y++) {
+      for(var x = 0; x < $mapArray[y].length; x++) {
+        if ($mapArray[y][x] === "F") {
+          nextPos = (x+1);
+          if ($mapArray[y][nextPos] != 1) {
+            $mapArray[y][nextPos] = "F";
+            $mapArray[y][x] = 0;
+          }
+          break;
+        }
+      }
+    }
+  }
+
   function stopMoving() {
-    moving = false;
+    clearInterval(moving);
   }
 
   // move player
   setHandler("Left", movePlayerLeft, stopMoving);
   setHandler("Right", movePlayerRight, stopMoving);
-  setHandler("Up", movePlayerUp);
-  setHandler("Down", movePlayerDown);
+  setHandler("Up", movePlayerUp, stopMoving);
+  setHandler("Down", movePlayerDown, stopMoving);
 
   var z = 1
   // main game loop, redraws every 50 milliseconds
