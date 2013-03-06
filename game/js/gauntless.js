@@ -119,7 +119,7 @@ window.onload = function() {
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1111111111111111111111111111111111111111111111111111111111111111\n";
 
-  var colours = [
+  var $colours = [
     "#000000",
     "#ffffff",
     "#aaaaaa",
@@ -138,6 +138,12 @@ window.onload = function() {
     "#aa00aa"
   ];
 
+	function colourLookup(x,y) {
+		colourCode = $colours[parseInt(mapArray[y][x],16)];
+		return colourCode;
+	}
+
+
   // initial map setup
   var mapArray = [];
   var tmpArray = map.split("\n");
@@ -148,7 +154,7 @@ window.onload = function() {
   function renderScreen() {
     for(y = 0; y < mapArray.length; y++) {
       for(var x = 0; x < mapArray[y].length; x++) {
-        ctx.fillStyle = colours[parseInt(mapArray[y][x],16)]; 
+        ctx.fillStyle = colourLookup(x,y);
         ctx.fillRect(x,y,1,1);
       }
     }
@@ -180,7 +186,7 @@ window.onload = function() {
 
     // this is a test element
     // OMG IT BLINKS!!
-    ctx.fillStyle = colours[z];
+    ctx.fillStyle = $colours[z];
     ctx.fillRect(5,5,1,1);
     if(z==16){
       z = 1;
