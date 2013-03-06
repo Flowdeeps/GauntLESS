@@ -154,6 +154,9 @@ window.onload = function() {
     }
   }
 
+  // player movement functions
+  var moving = false;
+
   function movePlayerUp() {
     alert("up");
   }
@@ -161,15 +164,49 @@ window.onload = function() {
     alert("down");
   }
   function movePlayerLeft() {
-    alert("left");
+    moving = true;
+    for(y = 0; y < mapArray.length; y++) {
+      for(var x = 0; x < mapArray[y].length; x++) {
+        if (mapArray[y][x] === "F") {
+          /*
+          setInterval(function()  {
+            if (moving) {
+              nextPos = (x-1);
+              if (mapArray[y][nextPos] != 1) {
+                mapArray[y][nextPos] = "F";
+                mapArray[y][x] = 0;
+              }
+            } else {
+            }
+          }, 50);
+          break;
+          */
+        }
+      }
+    }
   }
   function movePlayerRight() {
-    alert("right");
+    moving = true;
+    for(y = 0; y < mapArray.length; y++) {
+      for(var x = 0; x < mapArray[y].length; x++) {
+        if (mapArray[y][x] === "F") {
+            nextPos = (x+1);
+            if (mapArray[y][nextPos] != 1) {
+                mapArray[y][nextPos] = "F";
+                mapArray[y][x] = 0;
+                break;
+            }
+        }
+      }
+    }
+  }
+  function stopMoving() {
+    moving = false;
   }
 
   // move player
-  setHandler("Left", movePlayerLeft);
-  setHandler("Right", movePlayerRight);
+  setHandler("Left", movePlayerLeft, stopMoving);
+  setHandler("Right", movePlayerRight, stopMoving);
   setHandler("Up", movePlayerUp);
   setHandler("Down", movePlayerDown);
 
