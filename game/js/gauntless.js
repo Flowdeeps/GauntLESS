@@ -154,6 +154,25 @@ window.onload = function() {
     }
   }
 
+  function movePlayerUp() {
+    alert("up");
+  }
+  function movePlayerDown() {
+    alert("down");
+  }
+  function movePlayerLeft() {
+    alert("left");
+  }
+  function movePlayerRight() {
+    alert("right");
+  }
+
+  // move player
+  setHandler("Left", movePlayerLeft);
+  setHandler("Right", movePlayerRight);
+  setHandler("Up", movePlayerUp);
+  setHandler("Down", movePlayerDown);
+
   var z = 1
   // main game loop, redraws every 50 milliseconds
   setInterval(function() {
