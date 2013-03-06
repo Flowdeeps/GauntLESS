@@ -49,5 +49,5 @@ window.addEventListener("mousedown", function(e) {_doHandle(_buttonName(e), true
 window.addEventListener("mouseup", function(e) {_doHandle(_buttonName(e), false);}, false);
 
 window.addEventListener("mousemove", function(e) {
-  mouseX = e.pageX - _centerX; mouseY = _centerY - e.pageY;
+  // mouseX = e.pageX - _centerX; mouseY = _centerY - e.pageY;
 }, false);
