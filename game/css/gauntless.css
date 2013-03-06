@@ -17,42 +17,6 @@ h1 {
   text-align: center;
   }
 
-/* stage */
-#stage {
-  background: #fff;
-  position: relative;
-  width: 32px;
-  height: 24px;
-  margin: auto;
-  overflow: hidden;
-  }
-  #stage #map {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 64px;
-    width: 64px;
-    }
-    /* columns */
-    #stage #map > div {
-      position: absolute;
-      left: 0;
-      }
-    /* each basic game element is a span - it's just easier that way */
-    /* position is handled by the js */
-    /* spans without classes are just empty cells */
-    #stage #map span {
-      background: #000;
-      position: absolute;
-      height: 1px;
-      width: 1px;
-      }
-      #stage #map span.wall {
-        background: red;
-        }
-      #stage #map span.exit {
-        background: white;
-        }
 /* zoom tools */
 #zoom {
   text-align: center;
