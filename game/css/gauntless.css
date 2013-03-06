@@ -11,6 +11,7 @@
 body {
   background: url(../images/conan.png) center top #000;
   text-align: center;
+  overflow: none;
   }
 h1 {
   text-align: center;
