@@ -8,13 +8,15 @@
 * {
   font-family: "Comic Sans MS";
   }
-
 body {
-  background: #666;
+  background: url(../images/conan.png) center top #000;
   text-align: center;
   }
 h1 {
   text-align: center;
+  color: magenta;
+  text-shadow: 1px 1px 1px #000;
+  text-decoration: blink;
   }
 canvas {
   box-shadow: 1px 1px 1px #000;
@@ -24,14 +26,31 @@ canvas {
   text-align: center;
   list-style: none;
   padding: 0;
+  background: #333;
+  border-radius: 3px;
+  width: 230px;
+  margin: 10px auto;
+  padding: 10px;
+  color: #fff;
+  box-shadow: 1px 1px 1px #000;
+  border: solid 1px #fff;
   }
   #zoom li {
     display: inline-block;
     }
+    #zoom li a {
+      color: #fff;
+      }
 
 /* footer */
 footer {
   }
   footer p {
-    text-align: center;
+    background: #333;
+    width: 230px;
+    margin: 10px auto;
+    padding: 10px;
+    color: #fff;
+    box-shadow: 1px 1px 1px #000;
+    border: solid 1px #fff;
     }
