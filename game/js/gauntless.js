@@ -164,29 +164,29 @@ window.onload = function() {
   }
 
   // player movement functions
-  var moving = false;
+  var moving = {};
 
   function movePlayerUp() {
     stopMoving();
-    moving = setInterval(function()  {
+    moving['up'] = setInterval(function()  {
       goUp();
     }, 50);
   }
   function movePlayerDown() {
     stopMoving();
-    moving = setInterval(function()  {
+    moving['down'] = setInterval(function()  {
       goDown();
     }, 50);
   }
   function movePlayerLeft() {
     stopMoving();
-    moving = setInterval(function()  {
+    moving['left'] = setInterval(function()  {
       goLeft();
     }, 50);
   }
   function movePlayerRight() {
     stopMoving();
-    moving = setInterval(function()  {
+    moving['right'] = setInterval(function()  {
       goRight();
     }, 50);
   }
@@ -260,14 +260,36 @@ window.onload = function() {
   }
 
   function stopMoving() {
-    clearInterval(moving);
+		var directions = ['up','down','left','right'];
+		for(var i = 0; i < 4; i++) {
+    	clearInterval(moving[directions[i]]);
+		}
   }
+	
+	// Not sure why but if I call these with arguments or with empty brackets
+	// they evaluate on load and never again or I'd one function with a direction
+	// argument
+	//
+	// Here so that when you lift up on the non-active direction it doesn't
+	// stop you from travelling in the active one.
+	function stopMovingLeft() {
+		clearInterval(moving['left']);
+	}
+	function stopMovingRight() {
+		clearInterval(moving['right']);
+	}
+	function stopMovingUp() {
+		clearInterval(moving['up']);
+	}
+	function stopMovingDown() {
+		clearInterval(moving['down']);
+	}
 
   // move player
-  setHandler("Left", movePlayerLeft, stopMoving);
-  setHandler("Right", movePlayerRight, stopMoving);
-  setHandler("Up", movePlayerUp, stopMoving);
-  setHandler("Down", movePlayerDown, stopMoving);
+  setHandler("Left", movePlayerLeft, stopMovingLeft);
+  setHandler("Right", movePlayerRight, stopMovingRight);
+  setHandler("Up", movePlayerUp, stopMovingUp);
+  setHandler("Down", movePlayerDown, stopMovingDown);
 
   var z = 1
   // main game loop, redraws every 50 milliseconds
