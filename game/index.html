@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>GauntLESS</title>
-  <link rel="stylesheet" href="css/gauntless.css" type="text/css" />
-  <script src="js/gauntless.js"></script>
-  <script src="js/event_code.js"></script>
-</head>
-<body>
-  <header>
-    <h1>GauntLESS</h1>
-    <h1>score: <span id="score"></span></h1>
-    <h1>health: <span id="health"></span></h1>
-    <h1>keys: <span id="keys"></span></h1>
-  </header>
-  <body>
-    <canvas id="stage" width="64px" height="64px" style="zoom: 4;"></canvas>
-    <ul id="zoom">
-      <li><a href="#" class="less">less [-]</a> </li>
-      <!-- <li>Current zoom: </li> -->
-      <li> <a href="#" class="more">more [+]</a></li>
-    </ul>
-  </body>
-  <footer>
-    <p>Gauntlet, but less so.</p>
-  </footer>
-</body>
+	<head>
+
+		<meta charset="utf-8" />
+
+		<title>GauntLESS</title>
+
+		<link rel="stylesheet" href="css/gauntless.css" type="text/css" />
+
+	</head>
+
+	<body>
+
+		<header>
+			<h1>GauntLESS</h1>
+			<h1>score: <span id="score"></span></h1>
+			<h1>health: <span id="health"></span></h1>
+			<h1>keys: <span id="keys"></span></h1>
+		</header>
+
+		<div class="body">
+			<canvas id="stage" width="64" height="64" style="zoom: 4;"></canvas>
+			<ul id="zoom">
+				<li><a href="#" class="less">less [-]</a> </li>
+				<!-- <li>Current zoom: </li> -->
+				<li> <a href="#" class="more">more [+]</a></li>
+			</ul>
+		</div>
+
+		<footer>
+			<p>Gauntlet, but less so.</p>
+		</footer>
+
+		<!-- javascript -->
+		<script src="js/gauntless.js"></script>
+		<script src="js/event_code.js"></script>
+		<!-- /javascript -->
+
+	</body>
 </html>
