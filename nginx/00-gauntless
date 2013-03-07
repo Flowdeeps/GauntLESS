@@ -1,0 +1,15 @@
+server {
+	listen 80 default_server;
+	server_name ec2-54-224-23-66.compute-1.amazonaws.com;
+
+	root /var/www/gauntless/game;
+	location ~ \.html$ {
+		allow all;
+	}
+	location ~ /levels/ {
+		rewrite ^/levels/(.*)$ /$1 break;
+		proxy_pass  http://pastebin.com;
+		proxy_set_header Host pastebin.com;
+	}
+
+}
