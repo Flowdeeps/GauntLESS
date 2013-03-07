@@ -73,7 +73,7 @@ window.onload = function() {
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
-1111111111111111111111111113333331111111111111111111111111111111\n\
+111111111111111111111111111DDDDDD1111111111111111111111111111111\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
@@ -108,14 +108,14 @@ window.onload = function() {
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000004000000400004000000000000000000000000000000000001\n\
+100000000000000G000000G0000G000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000001\n\
+10K0000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000001\n\
 1111111111111111111111111111111111111111111111111111111111111111\n";
 
@@ -141,11 +141,14 @@ window.onload = function() {
   $mapArray = mapParse(map);
 
   function colourLookup(x,y) {
-    if (($mapArray[y][x] === "N") ||
-        ($mapArray[y][x] === "E") ||
-        ($mapArray[y][x] === "S") ||
-        ($mapArray[y][x] === "W")) {
-        var colour = 3;
+    if (bulletChars.indexOf($mapArray[y][x]) >= 0) {
+        var colour = 2;
+    } else if ($mapArray[y][x] === keyChar) {
+      var colour = 4;
+    } else if ($mapArray[y][x] === doorChar) {
+      var colour = 3;
+    } else if ($mapArray[y][x] === ghostChar) {
+      var colour = 8;
     } else {
         var colour = parseInt($mapArray[y][x],16);
     }
@@ -162,6 +165,8 @@ window.onload = function() {
   }
 
   function renderScreen() {
+    document.getElementById('health').innerHTML = playerHealth;
+    document.getElementById('keys').innerHTML = playerKeys;
     for(var y = 0; y < $mapArray.length; y++) {
       for(var x = 0; x < $mapArray[y].length; x++) {
         ctx.fillStyle = colourLookup(x,y);
@@ -171,10 +176,22 @@ window.onload = function() {
   }
 
   /**
+   * char maps
+   */
+  var playerChar = "F"; 
+  var bulletChars = [ "N", "E", "S", "W" ];
+  var keyChar = "K";
+  var ghostChar = "G"
+  var doorChar = "D"
+
+
+  /**
    * player movement functions
    * and status vars
    */
   var playerSpeed = 40;
+  var playerHealth = 1000;
+  var playerKeys = 0;
   var facing = "N";
   var moving = {};
 
@@ -227,7 +244,74 @@ window.onload = function() {
       $mapArray[playerY][playerX] = 0;
     }
 
-    if ($mapArray[nextY][nextX] == 0) {
+    // add key
+    if ($mapArray[nextY][nextX] == keyChar) {
+      $mapArray[nextY][nextX] = "0";
+      playerKeys++;
+    }
+
+    // hit a door key
+    if ($mapArray[nextY][nextX] == doorChar) {
+      if (playerKeys > 0) {
+        openDoor(nextX, nextY);
+        playerKeys--;
+      }
+    }
+    
+    // hit a ghost remove health
+    if ($mapArray[nextY][nextX] == ghostChar) {
+      playerHealth--;
+      console.log(playerHealth);
+    }
+  }
+ 
+  // holy shit, this is lame, its prolly too late to keep coding
+  // this doesnt even make sense to me anymore
+  function openDoor(doorX, doorY) {
+    $mapArray[doorY][doorX] = "0";
+    var nextLeft = doorX;
+    var nextRight = doorX;
+    var nextUp = doorY;
+    var nextDown = doorY;
+    var hasMoreX = true;
+    var hasMoreY = true;
+    while (hasMoreX) {
+      var noMoreLeft = false
+      var noMoreRight = false;
+      nextLeft++;
+      if ($mapArray[doorY][nextLeft] == doorChar) {
+        $mapArray[doorY][nextLeft] = 0;
+      } else {
+        noMoreLeft = true;
+        nextRight--;
+        if ($mapArray[doorY][nextRight] == doorChar) {
+          $mapArray[doorY][nextRight] = 0;
+        } else {
+          noMoreRight = true;
+        }
+      }
+      if (noMoreLeft && noMoreRight) {
+        hasMoreX = false;
+      }
+    }
+    while (hasMoreY) {
+      var noMoreDown = false;
+      var noMoreUp = false;
+      nextDown++;
+      if ($mapArray[nextDown][doorX] == doorChar) {
+        $mapArray[nextDown][doorX] = 0;
+      } else {
+        noMoreDown = true;
+        nextUp--;
+        if ($mapArray[nextUp][doorX] == doorChar) {
+          $mapArray[nextUp][doorX] = 0;
+        } else {
+          noMoreUp = true;
+        }
+      }
+      if (noMoreUp && noMoreDown) {
+        hasMoreY = false;
+      }
     }
   }
 
@@ -328,7 +412,6 @@ window.onload = function() {
    * bullet code
    */
   var bullets = [];
-  var bulletChars = [ "N", "E", "S", "W" ];
   function renderBullets() {
     for(var y = 0; y < $mapArray.length; y++) {
       for(var x = 0; x < $mapArray[y].length; x++) {
