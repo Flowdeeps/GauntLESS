@@ -9,7 +9,8 @@
   font-family: "Comic Sans MS";
   }
 body {
-  background: url(../images/conan.png) center top #000;
+  background: url(../images/conan.png) center center #000;
+  background-size: 100%;
   text-align: center;
   overflow: none;
   }
@@ -52,6 +53,7 @@ footer {
     margin: 10px auto;
     padding: 10px;
     color: #fff;
-    box-shadow: 1px 1px 1px #000;
+    border-radius: 3px;
     border: solid 1px #fff;
+    box-shadow: 1px 1px 1px #000;
     }

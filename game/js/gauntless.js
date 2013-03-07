@@ -307,7 +307,13 @@ window.onload = function() {
     }
 
   }, 50);
+  
+  // lawl - no resizing the screen you cheating bastards.
+  setHandler("Ctrl", false);
+  setHandler("+", false);
+  setHandler("Mod", false);
 }
+
 
 // functions with a scope restricted to the window unload go here - I'm thinking any sort of clean up at this stage
 window.unload = function(){
