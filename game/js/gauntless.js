@@ -174,7 +174,7 @@ window.onload = function() {
    * player movement functions
    * and status vars
    */
-  var playerSpeed = 50;
+  var playerSpeed = 40;
   var facing = "N";
   var moving = {};
 
@@ -364,16 +364,21 @@ window.onload = function() {
         var nextX = (bullet.x-1);
       }
 
-      if ($mapArray[nextY][nextX] == 0) {
-        // TODO check if we hit a player or enemy
-        $mapArray[nextY][nextX] = bullet.direction;
-        $mapArray[bullet.y][bullet.x] = 0;  
-      } else {
-        // bullet hit a wall
-        $mapArray[bullet.y][bullet.x] = 0;  
-      }
+      moveBullet(bullet.x, bullet.y, nextX, nextY, bullet.direction);
     }
     bullets = [];
+  }
+
+  // add bullet collision dection here
+  function moveBullet(bulletX, bulletY, nextX, nextY, bulletDirection) {
+    if ($mapArray[nextY][nextX] == 0) {
+      // TODO check if we hit a player or enemy
+      $mapArray[nextY][nextX] = bulletDirection;
+      $mapArray[bulletY][bulletX] = 0;  
+    } else {
+      // bullet hit a wall
+      $mapArray[bulletY][bulletX] = 0;  
+    }
   }
 
   var z = 1
@@ -387,7 +392,7 @@ window.onload = function() {
     ctx.fillStyle = $colours[z];
     ctx.fillRect(5,5,1,1);
     if(z==16){ z = 1; } else { z++; }
-  }, 20);
+  }, 10);
   
   // lawl - no resizing the screen you cheating bastards.
   setHandler("Ctrl", false);
