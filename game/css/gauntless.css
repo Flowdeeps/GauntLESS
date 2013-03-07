@@ -9,7 +9,8 @@
   font-family: "Comic Sans MS";
   }
 body {
-  background: url(../images/conan.png) center top #000;
+  background: url(../images/conan.png) center center #000;
+  background-size: 100%;
   text-align: center;
   overflow: none;
   }
