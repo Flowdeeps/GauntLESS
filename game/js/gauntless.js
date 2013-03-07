@@ -174,7 +174,7 @@ window.onload = function() {
    * player movement functions
    * and status vars
    */
-  var playerSpeed = 20;
+  var playerSpeed = 50;
   var facing = "N";
   var moving = {};
 
@@ -218,48 +218,53 @@ window.onload = function() {
     }
   }
 
+  // general function where we can add things to do on collision
+  // like pick up key, remove health, open doors, or exit level
+  function movePlayer(playerX, playerY, nextX, nextY) {
+    // move to empty space
+    if ($mapArray[nextY][nextX] == 0) {
+      $mapArray[nextY][nextX] = "F";
+      $mapArray[playerY][playerX] = 0;
+    }
+
+    if ($mapArray[nextY][nextX] == 0) {
+    }
+  }
+
   function goUp() {
     var playerPos = findPlayer();
     var playerX = playerPos[0];
     var playerY = playerPos[1];
-    var nextPos = (playerY-1);
-    if ($mapArray[nextPos][playerX] != 1) {
-      $mapArray[nextPos][playerX] = "F";
-      $mapArray[playerY][playerX] = 0;
-    }
+    var nextY = (playerY-1);
+    var nextX = playerX;
+    movePlayer(playerX, playerY, nextX, nextY);
   }
 
   function goDown() {
     var playerPos = findPlayer();
     var playerX = playerPos[0];
     var playerY = playerPos[1];
-    var nextPos = (playerY+1);
-    if ($mapArray[nextPos][playerX] != 1) {
-      $mapArray[nextPos][playerX] = "F";
-      $mapArray[playerY][playerX] = 0;
-    }
+    var nextY = (playerY+1);
+    var nextX = playerX;
+    movePlayer(playerX, playerY, nextX, nextY);
   }
 
   function goLeft() {
     var playerPos = findPlayer();
     var playerX = playerPos[0];
     var playerY = playerPos[1];
-    var nextPos = (playerX-1);
-    if ($mapArray[playerY][nextPos] != 1) {
-      $mapArray[playerY][nextPos] = "F";
-      $mapArray[playerY][playerX] = 0;
-    }
+    var nextX = (playerX-1);
+    var nextY = playerY;
+    movePlayer(playerX, playerY, nextX, nextY);
   }
 
   function goRight() {
     var playerPos = findPlayer();
     var playerX = playerPos[0];
     var playerY = playerPos[1];
-    var nextPos = (playerX+1);
-    if ($mapArray[playerY][nextPos] != 1) {
-      $mapArray[playerY][nextPos] = "F";
-      $mapArray[playerY][playerX] = 0;
-    }
+    var nextX = (playerX+1);
+    var nextY = playerY;
+    movePlayer(playerX, playerY, nextX, nextY);
   }
 
   function fire() {
@@ -359,7 +364,7 @@ window.onload = function() {
         var nextX = (bullet.x-1);
       }
 
-      if ($mapArray[nextY][nextX] != 1) {
+      if ($mapArray[nextY][nextX] == 0) {
         // TODO check if we hit a player or enemy
         $mapArray[nextY][nextX] = bullet.direction;
         $mapArray[bullet.y][bullet.x] = 0;  
@@ -368,6 +373,7 @@ window.onload = function() {
         $mapArray[bullet.y][bullet.x] = 0;  
       }
     }
+    bullets = [];
   }
 
   var z = 1
@@ -381,7 +387,7 @@ window.onload = function() {
     ctx.fillStyle = $colours[z];
     ctx.fillRect(5,5,1,1);
     if(z==16){ z = 1; } else { z++; }
-  }, 50);
+  }, 20);
   
   // lawl - no resizing the screen you cheating bastards.
   setHandler("Ctrl", false);
