@@ -359,16 +359,24 @@ window.onload = function() {
     var playerY = playerPos[1];
     if (facing === "N") {
       var bulletPos = (playerY-1);
-      $mapArray[bulletPos][playerX] = "N"; 
+      if ($mapArray[bulletPos][playerX] != 1 && $mapArray[bulletPos][playerX] != doorChar) {
+        $mapArray[bulletPos][playerX] = "N";
+      } 
     } else if (facing === "S") {
       var bulletPos = (playerY+1);
-      $mapArray[bulletPos][playerX] = "S"; 
+      if ($mapArray[bulletPos][playerX] != 1 && $mapArray[bulletPos][playerX] != doorChar) {
+        $mapArray[bulletPos][playerX] = "S"; 
+      }
     } else if (facing === "E") {
       var bulletPos = (playerX+1);
-      $mapArray[playerY][bulletPos] = "E"; 
+      if ($mapArray[playerY][bulletPos] != 1 && $mapArray[playerY][bulletPos] != doorChar) {
+        $mapArray[playerY][bulletPos] = "E"; 
+       }
     } else if (facing === "W") {
       var bulletPos = (playerX-1);
-      $mapArray[playerY][bulletPos] = "W"; 
+      if ($mapArray[playerY][bulletPos] != 1 && $mapArray[playerY][bulletPos] != doorChar) {
+        $mapArray[playerY][bulletPos] = "W"; 
+      }
     }
   
   }
