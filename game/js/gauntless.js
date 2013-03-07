@@ -174,35 +174,38 @@ window.onload = function() {
    * player movement functions
    * and status vars
    */
-  var moving = false;
-  var facing = "N";
   var playerSpeed = 20;
+  var facing = "N";
+  var moving = {};
 
   function movePlayerUp() {
     stopMoving();
     facing = "N";
-    moving = setInterval(function()  {
+    moving['up'] = setInterval(function()  {
       goUp();
     }, playerSpeed);
   }
+
   function movePlayerDown() {
     stopMoving();
     facing = "S";
-    moving = setInterval(function()  {
+    moving['down'] = setInterval(function()  {
       goDown();
     }, playerSpeed);
   }
+
   function movePlayerLeft() {
     stopMoving();
     facing = "W";
-    moving = setInterval(function()  {
+    moving['left'] = setInterval(function()  {
       goLeft();
     }, playerSpeed);
   }
+
   function movePlayerRight() {
     stopMoving();
     facing = "E";
-    moving = setInterval(function()  {
+    moving['right'] = setInterval(function()  {
       goRight();
     }, playerSpeed);
   }
@@ -217,7 +220,6 @@ window.onload = function() {
         }
       }
     }
-
   }
 
   function goUp() {
@@ -285,8 +287,30 @@ window.onload = function() {
   }
 
   function stopMoving() {
-    clearInterval(moving);
+		var directions = ['up','down','left','right'];
+		for(var i = 0; i < 4; i++) {
+    	clearInterval(moving[directions[i]]);
+		}
   }
+	
+	// Not sure why but if I call these with arguments or with empty brackets
+	// they evaluate on load and never again or I'd one function with a direction
+	// argument
+	//
+	// Here so that when you lift up on the non-active direction it doesn't
+	// stop you from travelling in the active one.
+	function stopMovingLeft() {
+		clearInterval(moving['left']);
+	}
+	function stopMovingRight() {
+		clearInterval(moving['right']);
+	}
+	function stopMovingUp() {
+		clearInterval(moving['up']);
+	}
+	function stopMovingDown() {
+		clearInterval(moving['down']);
+	}
 
   // move player key event handlers
   setHandler("Left", movePlayerLeft, stopMoving);
@@ -347,7 +371,6 @@ window.onload = function() {
         $mapArray[bullet.y][bullet.x] = 0;  
       }
     }
- 
   }
 
   var z = 1
@@ -361,9 +384,14 @@ window.onload = function() {
     ctx.fillStyle = $colours[z];
     ctx.fillRect(5,5,1,1);
     if(z==16){ z = 1; } else { z++; }
-
-  }, 20);
+  }, 50);
+  
+  // lawl - no resizing the screen you cheating bastards.
+  setHandler("Ctrl", false);
+  setHandler("+", false);
+  setHandler("Mod", false);
 }
+
 
 // functions with a scope restricted to the window unload go here - I'm thinking any sort of clean up at this stage
 window.unload = function(){
