@@ -52,6 +52,7 @@ footer {
     margin: 10px auto;
     padding: 10px;
     color: #fff;
-    box-shadow: 1px 1px 1px #000;
+    border-radius: 3px;
     border: solid 1px #fff;
+    box-shadow: 1px 1px 1px #000;
     }
