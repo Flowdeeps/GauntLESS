@@ -179,7 +179,6 @@ window.onload = function() {
   var moving = {};
 
   function movePlayerUp() {
-    stopMoving();
     facing = "N";
     moving['up'] = setInterval(function()  {
       goUp();
@@ -187,7 +186,6 @@ window.onload = function() {
   }
 
   function movePlayerDown() {
-    stopMoving();
     facing = "S";
     moving['down'] = setInterval(function()  {
       goDown();
@@ -195,7 +193,6 @@ window.onload = function() {
   }
 
   function movePlayerLeft() {
-    stopMoving();
     facing = "W";
     moving['left'] = setInterval(function()  {
       goLeft();
@@ -203,7 +200,6 @@ window.onload = function() {
   }
 
   function movePlayerRight() {
-    stopMoving();
     facing = "E";
     moving['right'] = setInterval(function()  {
       goRight();
@@ -288,35 +284,36 @@ window.onload = function() {
 
   function stopMoving() {
 		var directions = ['up','down','left','right'];
-		for(var i = 0; i < 4; i++) {
-    	clearInterval(moving[directions[i]]);
+		for(var d in directions) {
+          var direction = directions[d];
+    	  clearInterval(moving[direction]);
 		}
   }
 	
-	// Not sure why but if I call these with arguments or with empty brackets
-	// they evaluate on load and never again or I'd one function with a direction
-	// argument
-	//
-	// Here so that when you lift up on the non-active direction it doesn't
-	// stop you from travelling in the active one.
-	function stopMovingLeft() {
-		clearInterval(moving['left']);
-	}
-	function stopMovingRight() {
-		clearInterval(moving['right']);
-	}
-	function stopMovingUp() {
-		clearInterval(moving['up']);
-	}
-	function stopMovingDown() {
-		clearInterval(moving['down']);
-	}
+  // Not sure why but if I call these with arguments or with empty brackets
+  // they evaluate on load and never again or I'd one function with a direction
+  // argument
+  //
+  // Here so that when you lift up on the non-active direction it doesn't
+  // stop you from travelling in the active one.
+  function stopMovingLeft() {
+	clearInterval(moving.left);
+  }
+  function stopMovingRight() {
+	clearInterval(moving.right);
+  }
+  function stopMovingUp() {
+	clearInterval(moving.up);
+  }
+  function stopMovingDown() {
+	clearInterval(moving.down);
+  }
 
   // move player key event handlers
-  setHandler("Left", movePlayerLeft, stopMoving);
-  setHandler("Right", movePlayerRight, stopMoving);
-  setHandler("Up", movePlayerUp, stopMoving);
-  setHandler("Down", movePlayerDown, stopMoving);
+  setHandler("Left", movePlayerLeft, stopMovingLeft);
+  setHandler("Right", movePlayerRight, stopMovingRight);
+  setHandler("Up", movePlayerUp, stopMovingUp);
+  setHandler("Down", movePlayerDown, stopMovingDown);
   setHandler("Space", fire);
   /**
    * end player movement code
