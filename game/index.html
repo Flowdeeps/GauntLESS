@@ -14,13 +14,20 @@
 
 		<header>
 			<h1>GauntLESS</h1>
-			<h1>score: <span id="score"></span></h1>
-			<h1>health: <span id="health"></span></h1>
-			<h1>keys: <span id="keys"></span></h1>
-		</header>
+    </header>
 
-		<div class="body">
-			<canvas id="stage" width="64" height="64" style="zoom: 4;"></canvas>
+    <div class="body">
+      <div id="player_stats">
+        <dl>
+          <dt>Score:</dt>
+            <dd id="score"></dd>
+          <dt>Health:</dt>
+            <dd id="health"></dd>
+          <dt>Keys:</dt>
+            <dd id="keys"></dd>
+        </dl>
+      </div>
+			<canvas id="stage" width="64" height="64"></canvas>
 			<ul id="zoom">
 				<li><a href="#" class="less">less [-]</a> </li>
 				<!-- <li>Current zoom: </li> -->

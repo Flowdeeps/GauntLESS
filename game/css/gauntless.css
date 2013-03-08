@@ -20,6 +20,34 @@ h1 {
   text-shadow: 1px 1px 1px #000;
   text-decoration: blink;
   }
+
+#player_stats {
+  background: magenta;
+  padding: 20px;
+  width: 210px;
+  margin: 10px auto;
+  border-radius: 3px;
+  border: solid 1px #fff;
+  box-shadow: 1px 1px 1px #000;
+  }
+  #player_stats dl {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    }
+    #player_stats dl dt {
+      float: left;
+      margin: 0 10px 0 0;
+      clear: left;
+      color: white;
+      line-height: 30px;
+      text-shadow: 1px 1px 1px #000;
+      }
+    #player_stats dl dd {
+      color: yellow;
+      line-height: 30px;
+      text-shadow: 1px 1px 1px #000;
+      }
 canvas {
   box-shadow: 1px 1px 1px #000;
   }
