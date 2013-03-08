@@ -15,10 +15,10 @@ body {
   overflow: none;
   }
 h1 {
-  text-align: center;
-  color: magenta;
-  text-shadow: 1px 1px 1px #000;
-  text-decoration: blink;
+  background: url(../images/logo.png) center center no-repeat transparent;
+  height: 403px;
+  overflow: hidden;
+  text-indent: -10000em;
   }
 
 #player_stats {
