@@ -468,11 +468,15 @@ window.onload = function() {
     // hit a ghost
     if ($mapArray[nextY][nextX] == ghostChar) {
       $mapArray[nextY][nextX] = 0;
-      playerScore += 50;
+      addScore(50);
     }
 
     $mapArray[bulletY][bulletX] = 0;  
   }
+
+	function addScore(score) {
+		playerScore += Math.floor(score/$scale);
+	}
 
 	function grind() {
 		$colours.reverse();
