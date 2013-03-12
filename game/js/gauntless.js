@@ -10,6 +10,7 @@
 
 $scale = 1;
 $canvasSizeDefault = 64;
+$grindcoreMode = false;
 
 // functions with a scope restricted to the window load go here
 window.onload = function() {
@@ -473,11 +474,16 @@ window.onload = function() {
     $mapArray[bulletY][bulletX] = 0;  
   }
 
+	function grind() {
+		$colours.reverse();
+	}
+
   var z = 1
   // main game loop, redraws every 50 milliseconds
   setInterval(function() {
 		c.height = $scale * $canvasSizeDefault;
 		c.width = $scale * $canvasSizeDefault;
+		if($grindcoreMode) { grind(); }
     renderBullets();
     renderScreen();
 
