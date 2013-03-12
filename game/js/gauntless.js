@@ -8,6 +8,8 @@
 
 // functions with a global scope should go here
 
+$scale = 1;
+$canvasSizeDefault = 64;
 
 // functions with a scope restricted to the window load go here
 window.onload = function() {
@@ -480,6 +482,8 @@ window.onload = function() {
   var z = 1
   // main game loop, redraws every 50 milliseconds
   setInterval(function() {
+		c.height = $scale * $canvasSizeDefault;
+		c.width = $scale * $canvasSizeDefault;
     renderBullets();
     renderScreen();
 
