@@ -173,7 +173,7 @@ window.onload = function() {
     for(var y = 0; y < $mapArray.length; y++) {
       for(var x = 0; x < $mapArray[y].length; x++) {
         ctx.fillStyle = colourLookup(x,y);
-        ctx.fillRect(x,y,1,1);
+        ctx.fillRect($scale * x,$scale * y,$scale,$scale);
       }
     }
   }
