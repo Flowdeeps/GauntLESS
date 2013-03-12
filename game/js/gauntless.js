@@ -18,17 +18,14 @@ window.onload = function() {
   var $stage = document.getElementById('stage');
   var $zoomLess = document.getElementsByClassName('less')[0];
   var $zoomMore = document.getElementsByClassName('more')[0];
-  var zoomScale = parseInt($stage.style.zoom);
+  //var zoomScale = parseInt($stage.style.zoom);
 
   // cheat zoom
   if (document.getElementsByClassName('less')[0]){
     $zoomLess.onclick = function(){
       // make the stage 200% smaller on each click until it's minimum 100% of original scale
-      if (zoomScale == 1){
-        // do nowt
-      } else {
-        zoomScale -= 1;
-        $stage.style.zoom = zoomScale;
+      if ($scale != 1){
+        $scale -= 1;
       }
       return false;
     }
@@ -38,13 +35,10 @@ window.onload = function() {
 
     $zoomMore.onclick = function(){
       // make the stage 200% bigger on each click until it's maximum 600% of original scale
-      if (zoomScale >= 7){
-        // do nowt
-      } else {
-        zoomScale += 1;
-        $stage.style.zoom = zoomScale;
+      if ($scale <= 7){
+        $scale += 1;
       }
-      console.log(zoomScale);
+      console.log($scale);
       return false;
     }
   }
