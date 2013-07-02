@@ -29,7 +29,7 @@ window.onload = function() {
         $scale -= 1;
       }
       return false;
-    }
+    };
   }
 
   if (document.getElementsByClassName('more')[0]){
@@ -41,7 +41,7 @@ window.onload = function() {
       }
       console.log($scale);
       return false;
-    }
+    };
   }
 
   // Canvas context crap
@@ -182,12 +182,11 @@ window.onload = function() {
   /**
    * char maps
    */
-  var playerChar = "F"; 
+  var playerChar = "F";
   var bulletChars = [ "N", "E", "S", "W" ];
   var keyChar = "K";
-  var ghostChar = "G"
-  var doorChar = "D"
-
+  var ghostChar = "G";
+  var doorChar = "D";
 
   /**
    * player movement functions
@@ -262,14 +261,14 @@ window.onload = function() {
         playerKeys--;
       }
     }
-    
+
     // hit a ghost, remove health
     if ($mapArray[nextY][nextX] == ghostChar) {
       playerHealth--;
       console.log(playerHealth);
     }
   }
- 
+
   // holy shit, this is lame, its prolly too late to keep coding
   // this doesnt even make sense to me anymore
   function openDoor(doorX, doorY) {
@@ -281,7 +280,7 @@ window.onload = function() {
     var hasMoreX = true;
     var hasMoreY = true;
     while (hasMoreX) {
-      var noMoreLeft = false
+      var noMoreLeft = false;
       var noMoreRight = false;
       nextLeft++;
       if ($mapArray[doorY][nextLeft] == doorChar) {
@@ -360,38 +359,39 @@ window.onload = function() {
     var playerPos = findPlayer();
     var playerX = playerPos[0];
     var playerY = playerPos[1];
+    var bulletPos;
     if (facing === "N") {
-      var bulletPos = (playerY-1);
+      bulletPos = (playerY-1);
       if ($mapArray[bulletPos][playerX] != 1 && $mapArray[bulletPos][playerX] != doorChar) {
         $mapArray[bulletPos][playerX] = "N";
-      } 
+      }
     } else if (facing === "S") {
-      var bulletPos = (playerY+1);
+      bulletPos = (playerY+1);
       if ($mapArray[bulletPos][playerX] != 1 && $mapArray[bulletPos][playerX] != doorChar) {
-        $mapArray[bulletPos][playerX] = "S"; 
+        $mapArray[bulletPos][playerX] = "S";
       }
     } else if (facing === "E") {
-      var bulletPos = (playerX+1);
+      bulletPos = (playerX+1);
       if ($mapArray[playerY][bulletPos] != 1 && $mapArray[playerY][bulletPos] != doorChar) {
-        $mapArray[playerY][bulletPos] = "E"; 
+        $mapArray[playerY][bulletPos] = "E";
        }
     } else if (facing === "W") {
-      var bulletPos = (playerX-1);
+      bulletPos = (playerX-1);
       if ($mapArray[playerY][bulletPos] != 1 && $mapArray[playerY][bulletPos] != doorChar) {
-        $mapArray[playerY][bulletPos] = "W"; 
+        $mapArray[playerY][bulletPos] = "W";
       }
     }
-  
+
   }
 
   function stopMoving() {
 		var directions = ['up','down','left','right'];
 		for(var d in directions) {
-          var direction = directions[d];
-    	  clearInterval(moving[direction]);
+      var direction = directions[d];
+      clearInterval(moving[direction]);
 		}
   }
-	
+
   // Not sure why but if I call these with arguments or with empty brackets
   // they evaluate on load and never again or I'd one function with a direction
   // argument
@@ -432,11 +432,11 @@ window.onload = function() {
           var bullet = {
             "direction": $mapArray[y][x],
             "x": x,
-            "y": y 
-          }
+            "y": y
+          };
           bullets.push(bullet);
         }
-      } 
+      }
     }
 
     // handler n bullet
@@ -477,7 +477,7 @@ window.onload = function() {
       addScore(50);
     }
 
-    $mapArray[bulletY][bulletX] = 0;  
+    $mapArray[bulletY][bulletX] = 0;
   }
 
 	function addScore(score) {
@@ -488,7 +488,7 @@ window.onload = function() {
 		$colours.reverse();
 	}
 
-  var z = 1
+  var z = 1;
   // main game loop, redraws every 50 milliseconds
   setInterval(function() {
 		c.height = $scale * $canvasSizeDefault;
@@ -503,15 +503,15 @@ window.onload = function() {
     ctx.fillRect(5,5,1,1);
     if(z==16){ z = 1; } else { z++; }
   }, 10);
-  
+
   // lawl - no resizing the screen you cheating bastards.
   setHandler("Ctrl", false);
   setHandler("+", false);
   setHandler("Mod", false);
-}
+};
 
 
 // functions with a scope restricted to the window unload go here - I'm thinking any sort of clean up at this stage
 window.unload = function(){
   // hammer away at the keys here
-}
+};
