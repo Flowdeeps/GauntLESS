@@ -161,16 +161,21 @@ window.onload = function() {
     return mapArray;
   }
 
+  var fps = 60;
   function renderScreen() {
+    setTimeout(function() {
     document.getElementById('health').innerHTML = playerHealth;
     document.getElementById('keys').innerHTML = playerKeys;
     document.getElementById('score').innerHTML = playerScore;
-    for(var y = 0; y < $mapArray.length; y++) {
-      for(var x = 0; x < $mapArray[y].length; x++) {
-        ctx.fillStyle = colourLookup(x,y);
-        ctx.fillRect($scale * x,$scale * y,$scale,$scale);
+      ctx.clearRect(0, 0, c.width, c.height);
+      requestAnimationFrame(renderScreen);
+      for(var y = 0; y < $mapArray.length; y++) {
+        for(var x = 0; x < $mapArray[y].length; x++) {
+          ctx.fillStyle = colourLookup(x,y);
+          ctx.fillRect($scale * x,$scale * y,$scale,$scale);
+        }
       }
-    }
+    }, 1000 / fps);
   }
 
   /**
