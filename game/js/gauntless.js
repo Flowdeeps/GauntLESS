@@ -140,7 +140,7 @@ window.onload = function() {
 
   function colourLookup(x,y) {
     if (bulletChars.indexOf($mapArray[y][x]) >= 0) {
-      var colour = 2;
+        var colour = 2;
     } else if ($mapArray[y][x] === keyChar) {
       var colour = 4;
     } else if ($mapArray[y][x] === doorChar) {
@@ -148,7 +148,7 @@ window.onload = function() {
     } else if ($mapArray[y][x] === ghostChar) {
       var colour = 8;
     } else {
-      var colour = parseInt($mapArray[y][x],16);
+        var colour = parseInt($mapArray[y][x],16);
     }
     return $colours[colour];
   }
